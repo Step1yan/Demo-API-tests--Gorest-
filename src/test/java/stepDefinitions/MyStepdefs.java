@@ -1,4 +1,4 @@
-package stepDefinition;
+package stepDefinitions;
 
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
@@ -6,10 +6,8 @@ import io.restassured.response.Response;
 import org.hamcrest.Matchers;
 import spec.BaseURL;
 import test.Token;
-
 import java.util.HashMap;
 import java.util.Map;
-
 import static dynamicFunctions.API_Function.*;
 import static dynamicFunctions.Utils.getRandomEmail;
 import static io.restassured.RestAssured.given;
@@ -119,13 +117,7 @@ public class MyStepdefs {
 
     @And("I assert that the user name has been updated")
     public void iAssertThatTheUserNameHasBeenUpdated() {
-//        given()
-//                .header("Accept", "application/json")
-//                .header("Content-Type", "application/json")
-//                .header("authorization", token)
-//                .when()
-//                .body(user)
-//                .patch(URL + "/public/v2/users/" + id)
+
         patchRequest(user, "/public/v2/users/" + id)
                 .then().body("name", equalTo("new name"))
                 .extract().response().then().extract().response();
@@ -133,6 +125,7 @@ public class MyStepdefs {
 
     @Given("I Update the user status with PATCH")
     public void iUpdateTheUserStatusWithPATCH() {
+
         user = new HashMap<>();
         user.put("name", "Grigor Stepanyan");
         user.put("email", getRandomEmail());
@@ -160,6 +153,7 @@ public class MyStepdefs {
 
     @Given("I Update the user all details")
     public void iUpdateTheUserAllDetails() {
+
         user = new HashMap<>();
         user.put("name", "Grigor Stepanyan");
         user.put("email", getRandomEmail());
@@ -193,6 +187,7 @@ public class MyStepdefs {
 
     @Given("I create the new user with an invalid token")
     public void iCreateTheNewUserWithAnInvalidToken() {
+
         Map<String, String> user = new HashMap<>();
 
         user.put("name", "Grigor Stepanyan");
@@ -210,12 +205,14 @@ public class MyStepdefs {
 
     @And("I assert that the error message")
     public void iAssertThatTheErrorMessage() {
+
         response.then()
                 .body("message", equalTo("Authentication failed"));
     }
 
     @Given("I create a new user with invalid email address")
     public void iCreateANewUserWithInvalidEmailAddress() {
+
         user = new HashMap<>();
         user.put("name", "Grigor Stepanyan");
         user.put("email", "gmail.com");
@@ -229,6 +226,7 @@ public class MyStepdefs {
 
     @And("I assert that the error message for invalid email")
     public void iAssertThatTheErrorMessageForInvalidEmail() {
+
         response.then()
                 .body("[0].field", equalTo("email"),
                         "[0].message", equalTo("is invalid"))
@@ -237,6 +235,7 @@ public class MyStepdefs {
 
     @Given("I create a new user with invalid status")
     public void iCreateANewUserWithInvalidStatus() {
+
         user = new HashMap<>();
         user.put("name", "Grigor Stepanyan");
         user.put("email", getRandomEmail());
@@ -249,6 +248,7 @@ public class MyStepdefs {
 
     @And("I assert that the error message for invalid status")
     public void iAssertThatTheErrorMessageForInvalidStatus() {
+
         response.then()
                 .body("[0].message", equalTo("can't be blank"))
                 .extract().response();
@@ -256,6 +256,7 @@ public class MyStepdefs {
 
     @Given("I create a new user with invalid gender")
     public void iCreateANewUserWithInvalidGender() {
+
         user = new HashMap<>();
         user.put("name", "Grigor Stepanyan");
         user.put("email", getRandomEmail());
@@ -268,6 +269,7 @@ public class MyStepdefs {
 
     @And("I assert that the error message for invalid gender")
     public void iAssertThatTheErrorMessageForInvalidGender() {
+
         response.then()
                 .body("[0].message", equalTo("can't be blank, can be male of female"))
                 .extract().response();
@@ -275,6 +277,7 @@ public class MyStepdefs {
 
     @And("I get user with invalid id")
     public void iGetUserWithInvalidId() {
+
         response = getRequest("/public/v2/users/" + "121112")
                 .then()
                 .extract().response();
@@ -282,6 +285,7 @@ public class MyStepdefs {
 
     @And("I assert that the error message for an invalid id get request")
     public void iAssertThatTheErrorMessageForAnInvalidIdGetRequest() {
+
         response.then()
                 .body("message", equalTo("Resource not found"))
                 .extract().response();
