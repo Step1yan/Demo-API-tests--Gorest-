@@ -1,0 +1,23 @@
+<component name="InspectionProjectProfileManager">
+  <profile version="1.0">
+    <option name="myName" value="Project Default" />
+    <inspection_tool class="MavenPackageUpdate" enabled="true" level="WARNING" enabled_by_default="true">
+      <option name="excludeList">
+        <list>
+          <option value="org.junit.vintage:junit-vintage-engine" />
+          <option value="org.assertj:assertj-core" />
+          <option value="io.cucumber:cucumber-java" />
+          <option value="io.cucumber:cucumber-junit" />
+          <option value="org.hamcrest:hamcrest" />
+          <option value="org.seleniumhq.selenium:selenium-api" />
+          <option value="com.codeborne:selenide" />
+          <option value="com.fasterxml.jackson.core:jackson-annotations" />
+          <option value="io.rest-assured:rest-assured" />
+          <option value="org.testng:testng" />
+          <option value="junit:junit" />
+          <option value="org.seleniumhq.selenium:selenium-java" />
+        </list>
+      </option>
+    </inspection_tool>
+  </profile>
+</component>
