@@ -1,6 +1,0 @@
-stepDefinitions\MyStepdefs.class
-dynamicFunctions\API_Function.class
-dynamicFunctions\Utils.class
-spec\Specifications.class
-spec\BaseURL.class
-test\Token.class
